@@ -37,12 +37,11 @@ export default function Component() {
     }
   }, [router])
 
-  const ref_hora = useRef(null); refs['ref_hora'] = ref_hora;
   
-    const handleSubmittwisoxta = useCallback((ev) => {
+    const handleSubmitwyneqozv = useCallback((ev) => {
         const $form = ev.target
         ev.preventDefault()
-        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...{"fecha": getRefValue(ref_fecha), "codigo": getRefValue(ref_codigo), "hora": getRefValue(ref_hora)}}
+        const form_data = {...Object.fromEntries(new FormData($form).entries()), ...{"hora": getRefValue(ref_hora), "codigo": getRefValue(ref_codigo), "fecha": getRefValue(ref_fecha)}}
 
         addEvents([Event("state.handle_submit", {form_data:form_data})])
 
@@ -51,8 +50,9 @@ export default function Component() {
         }
     })
     
-  const ref_fecha = useRef(null); refs['ref_fecha'] = ref_fecha;
+  const ref_hora = useRef(null); refs['ref_hora'] = ref_hora;
   const ref_codigo = useRef(null); refs['ref_codigo'] = ref_codigo;
+  const ref_fecha = useRef(null); refs['ref_fecha'] = ref_fecha;
 
   return (
     <Fragment>
@@ -241,7 +241,7 @@ export default function Component() {
 )}
 </Fragment>
 </VStack>
-  <Box as={`form`} onSubmit={handleSubmittwisoxta}>
+  <Box as={`form`} onSubmit={handleSubmitwyneqozv}>
   <VStack>
   <Input id={`codigo`} placeholder={`Codigo`} ref={ref_codigo} type={`text`}/>
   <Input id={`hora`} placeholder={`Hora de Servicio`} ref={ref_hora} type={`text`}/>

@@ -1,5 +1,5 @@
 import datetime
-
+import requests
 import reflex as rx
 
 from ProyectoSemestral import styles
@@ -65,3 +65,28 @@ def index() -> rx.Component:
                 spacing=".25em",
         )
     )
+
+def obtener_clima(api_key, ciudad):
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={ciudad}&appid={api_key}"
+    respuesta = requests.get(url)
+    datos = respuesta.json()
+
+    if respuesta.status_code == 200:
+        clima = datos['main']['temp']
+        condiciones_clima = datos['weather'][0]['description']
+        print(f"La temperatura en {ciudad} es: {clima} grados Celsius")
+        print(f"Condiciones climáticas: {condiciones_clima}")
+
+        # Verificar si está lloviendo
+        if 'rain' in condiciones_clima.lower():
+            print("¡Está lloviendo! No se recomienda volar el dron.")
+        else:
+            print("Las condiciones son adecuadas para volar el dron.")
+    else:
+        print(f"No se pudo obtener el clima. Código de estado: {respuesta.status_code}")
+        print(datos)
+
+if __name__ == "__main__":
+    api_key = 'b43ebcfbc020e122e8a0b04c1006f1e5'
+    ciudad = input("Ingrese el nombre de la ciudad: ")
+    obtener_clima(api_key, ciudad)

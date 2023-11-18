@@ -127,7 +127,7 @@ export default function Component() {
 </Text>
 </HStack>
   <Text sx={{"fontSize": "1em", "color": "#808080"}}>
-  {`Fecha: Saturday, 18 de November de 2023, Hora: 15:38:55`}
+  {`Fecha: Saturday, 18 de November de 2023, Hora: 16:08:42`}
 </Text>
   <Spacer/>
   <HStack/>

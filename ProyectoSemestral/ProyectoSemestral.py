@@ -1,25 +1,25 @@
 from sys import stdin
-
+import requests
 import psycopg2
 import reflex as rx
 
 from ProyectoSemestral import styles
 from ProyectoSemestral.pages import *
 
-connection = None
+#connection = None
 
 try: #se conecta con la base de datos
     connection = psycopg2.connect(
         host = 'localhost',
         user = 'postgres',
         password = 'juan2013',
-        database = 'PostgreSQL 11',
-        port = '5433'
+        database = 'Proyecto_Final',
+        port = '5432'
     )
     print("Conexión exitosa")
 except Exception as ex: print(ex)
 
-#cursordb = connection.cursor() #cursor que hara todas las operaciones
+cursordb = connection.cursor() #cursor que hara todas las operaciones
 
 #guardamos la fecha actual
 #cursordb.execute("SELECT current_timestamp")
