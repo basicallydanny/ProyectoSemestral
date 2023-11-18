@@ -3,7 +3,7 @@ from sys import stdin
 import psycopg2
 import reflex as rx
 
-from ProyectoSemestral import styles  # state,
+from ProyectoSemestral import styles
 from ProyectoSemestral.pages import *
 
 connection = None

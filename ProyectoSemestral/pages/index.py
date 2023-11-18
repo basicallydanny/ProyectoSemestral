@@ -59,7 +59,7 @@ def index() -> rx.Component:
         ),
         rx.spacer(),
         rx.spacer(),
-        rx.heading("Bitácora de Servicios", font_size="2.5em", color="#808080", style={"margin-bottom": "20px"}),
+        rx.heading("BITÁCORA DE SERVICIOS", font_size="2.5em", color="#808080", style={"margin-bottom": "20px"}),
         rx.list(
                 items= log_data,
                 spacing=".25em",

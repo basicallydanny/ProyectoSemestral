@@ -127,7 +127,7 @@ export default function Component() {
 </Text>
 </HStack>
   <Text sx={{"fontSize": "1em", "color": "#808080"}}>
-  {`Fecha: Saturday, 18 de November de 2023, Hora: 01:14:02`}
+  {`Fecha: Saturday, 18 de November de 2023, Hora: 14:19:27`}
 </Text>
   <Spacer/>
   <HStack/>
@@ -146,7 +146,7 @@ export default function Component() {
   <Spacer/>
   <Spacer/>
   <Heading sx={{"marginBottom": "20px", "fontSize": "2.5em", "color": "#808080"}}>
-  {`Bitácora de Servicios`}
+  {`BITÁCORA DE SERVICIOS`}
 </Heading>
   <List spacing={`.25em`}>
   <ListItem>

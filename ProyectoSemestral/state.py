@@ -4,18 +4,27 @@ import reflex as rx
 
 
 class State(rx.State):
-    number: int = 0
-    text = "Change Me!"
-    selected: str = "DOGE"
+    pesoMax: int = 1.5
+    peso: str = None
+    lugar1: str = "Base"
+    lugar2: str = "Saman"
+    image_clicked: int = 0
+    domicilio: True
 
-    def update(self):
-        self.number = random.randint(0, 100)
+    form_data: dict = {}
 
-    def change_text(self, text):
-        if self.text == "Change Me!":
-            self.text = "Changed!"
-        else:
-            self.text = "Change Me!"
+    def weight(self, pesoPedido: str):
+        self.peso = int(pesoPedido)
+        if self.peso > self.pesoMax:
+            return
+        
+
+    def handle_submit(self, form_data: dict):
+        self.form_data = form_data
+        return [
+            rx.set_value(field_id, "")
+            for field_id in form_data
+        ]
     
     pass
 
