@@ -1,7 +1,7 @@
 import { createContext, useState } from "react"
 import { Event, hydrateClientStorage, useEventLoop } from "/utils/state.js"
 
-export const initialState = {"form_data": {}, "image_clicked": 0, "is_hydrated": false, "lugar1": "Base", "lugar2": "Saman", "number": 0, "router": {"session": {"client_token": "", "client_ip": "", "session_id": ""}, "headers": {"host": "", "origin": "", "upgrade": "", "connection": "", "pragma": "", "cache_control": "", "user_agent": "", "sec_websocket_version": "", "sec_websocket_key": "", "sec_websocket_extensions": "", "accept_encoding": "", "accept_language": ""}, "page": {"host": "", "path": "", "raw_path": "", "full_path": "", "full_raw_path": "", "params": {}}}, "text": "Change Me!"}
+export const initialState = {"confirmado": false, "domicilio": true, "form_data": {}, "image_clicked": 0, "is_hydrated": false, "lugar1": "Base", "lugar2": "Saman", "peso": null, "pesoMax": 1.5, "router": {"session": {"client_token": "", "client_ip": "", "session_id": ""}, "headers": {"host": "", "origin": "", "upgrade": "", "connection": "", "pragma": "", "cache_control": "", "user_agent": "", "sec_websocket_version": "", "sec_websocket_key": "", "sec_websocket_extensions": "", "accept_encoding": "", "accept_language": ""}, "page": {"host": "", "path": "", "raw_path": "", "full_path": "", "full_raw_path": "", "params": {}}}}
 
 export const ColorModeContext = createContext(null);
 export const StateContext = createContext(null);

@@ -4,7 +4,7 @@ import { Event, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, prev
 import { ColorModeContext, EventLoopContext, initialEvents, StateContext } from "/utils/context.js"
 import range from "/utils/helpers/range.js"
 import "focus-visible/dist/focus-visible"
-import { Box, Button, Center, Divider, Heading, HStack, Image, Input, Link, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, option, Select, Spacer, Text, VStack } from "@chakra-ui/react"
+import { Box, Button, Center, Divider, Heading, HStack, Image, Input, Link, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, option, Select, Spacer, Text, VStack } from "@chakra-ui/react"
 import { getEventURL } from "/utils/state.js"
 import NextLink from "next/link"
 import { HamburgerIcon } from "@chakra-ui/icons"
@@ -37,9 +37,9 @@ export default function Component() {
     }
   }, [router])
 
-  const ref_codigo = useRef(null); refs['ref_codigo'] = ref_codigo;
+  const ref_hora = useRef(null); refs['ref_hora'] = ref_hora;
   
-    const handleSubmitbgnvorvk = useCallback((ev) => {
+    const handleSubmittwisoxta = useCallback((ev) => {
         const $form = ev.target
         ev.preventDefault()
         const form_data = {...Object.fromEntries(new FormData($form).entries()), ...{"fecha": getRefValue(ref_fecha), "codigo": getRefValue(ref_codigo), "hora": getRefValue(ref_hora)}}
@@ -51,8 +51,8 @@ export default function Component() {
         }
     })
     
-  const ref_hora = useRef(null); refs['ref_hora'] = ref_hora;
   const ref_fecha = useRef(null); refs['ref_fecha'] = ref_fecha;
+  const ref_codigo = useRef(null); refs['ref_codigo'] = ref_codigo;
 
   return (
     <Fragment>
@@ -181,6 +181,9 @@ export default function Component() {
   <Text sx={{"fontSize": "1em", "color": "#4682B4"}}>
   {`SELECCIONE EL LUGAR DE ENTREGA`}
 </Text>
+  <Text sx={{"fontSize": "0.9em", "color": "#4682B4"}}>
+  {`En caso de ser una grabación, seleccione N/A`}
+</Text>
   <Select onChange={(_e0) => addEvents([Event("state.set_lugar2", {value:_e0.target.value})], (_e0), {})} value={state.lugar2}>
   <option value={`Base`}>
   {`Base`}
@@ -219,22 +222,53 @@ export default function Component() {
   {`N/A`}
 </option>
 </Select>
-  <Box as={`form`} onSubmit={handleSubmitbgnvorvk}>
+  <HStack>
   <VStack>
-  <Input id={`hora`} placeholder={`Hora de Servicio`} ref={ref_hora} type={`text`}/>
+  <Input onBlur={(_e0) => addEvents([Event("state.weight", {pesoPedido:_e0.target.value})], (_e0), {})} placeholder={`Peso (kg)`} type={`text`}/>
+  <Fragment>
+  {isTrue(state.domicilio) ? (
+  <Fragment>
+  <Text sx={{"color": "blue"}}>
+  {`Servicio: Domicilio`}
+</Text>
+</Fragment>
+) : (
+  <Fragment>
+  <Text sx={{"color": "blue"}}>
+  {`Servicio: Grabación`}
+</Text>
+</Fragment>
+)}
+</Fragment>
+</VStack>
+  <Box as={`form`} onSubmit={handleSubmittwisoxta}>
+  <VStack>
   <Input id={`codigo`} placeholder={`Codigo`} ref={ref_codigo} type={`text`}/>
+  <Input id={`hora`} placeholder={`Hora de Servicio`} ref={ref_hora} type={`text`}/>
   <Input id={`fecha`} placeholder={`Fecha de Servicio`} ref={ref_fecha} type={`date`}/>
   <Button type={`submit`}>
-  {`Submit`}
+  {`Confirmar`}
 </Button>
 </VStack>
 </Box>
-  <Text>
-  {`El encargo será recogido en ${state.lugar1}.`}
-</Text>
-  <Text>
-  {`El encargo será entregado en ${state.lugar2}.`}
-</Text>
+  <Modal isOpen={state.confirmado}>
+  <ModalOverlay>
+  <ModalContent>
+  <ModalHeader>
+  {`Confimado`}
+</ModalHeader>
+  <ModalBody>
+  {`¡La reserva ha sido exitosa!`}
+</ModalBody>
+  <ModalFooter>
+  <Button onClick={(_e) => addEvents([Event("state.change", {})], (_e), {})}>
+  {`Cerrar`}
+</Button>
+</ModalFooter>
+</ModalContent>
+</ModalOverlay>
+</Modal>
+</HStack>
 </VStack>
 </Box>
 </Box>
